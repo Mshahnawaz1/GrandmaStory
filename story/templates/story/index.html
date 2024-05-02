@@ -1,0 +1,30 @@
+{% extends 'story/layout.html'%}
+{% load static %}
+{% block body %}
+<div class="index">
+
+  <div class="story-section">
+    <div class="story">
+      {{res}}
+
+      {% for data in datas %}
+      <p><strong>You: </strong> {{data.input}} </p>
+      <p><strong>Grandma: </strong> {{data.response}} </p>
+      {% endfor %}
+        <div class="blank"></div>
+    </div>
+  </div>
+  <div class="form">
+    <div class="container">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" id="prompt" name="prompt" placeholder="Your prompt" required>
+        <button type="submit" id="fsubmit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src=""></script>
+
+{% endblock %}

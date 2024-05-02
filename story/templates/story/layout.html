@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Story{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet">
+
+        <!-- Include jQuery from a CDN (Content Delivery Network) -->
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        
+        <link href="{% static 'story/styles.css' %}" rel="stylesheet">
+        <link href="{% static 'story/form.css' %}" rel="stylesheet">
+
+        <link rel="icon" href="{% static 'story/favicon.ico' %}" type="image/x-icon">
+        <link rel="shortcut icon" href="{% static 'story/favicon.ico' %}" type="image/x-icon">
+    
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-lightb">
+            <a class="navbar-brand logo txt-white" href="{% url 'index' %}">Story</a>
+            <div>
+              <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link txt-w" href="{% url 'logout' %}">Log Out</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                {% endif %}
+              </ul>
+            </div>
+          </nav>
+        <hr>
+        <div class="body">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
